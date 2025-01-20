@@ -20,20 +20,19 @@ const Login = ({ handleLogin }) => {
     >
       {/* Company Name with Animation */}
       <h1
-        className="text-4xl sm:text-5xl md:text-6xl font-bold mb-8 text-white animate__animated animate__fadeIn animate__delay-1s transition duration-300 ease-in-out"
+        className="text-4xl sm:text-5xl mt-2 md:text-6xl font-bold mb-4 text-white animate__animated animate__fadeIn animate__delay-1s transition duration-300 ease-in-out"
         style={{ fontFamily: '"Jersey 15", serif', fontWeight: 100 }}
       >
         🔥SHOJEBthings🔥
       </h1>
 
       {/* Side Note */}
-      <div className="bg-yellow-100  border-l-4 border-yellow-500 text-yellow-700 p-4 rounded-lg shadow-lg mb-6 animate__animated animate__fadeInLeft animate__delay-1s">
-        <p className="text-sm font-medium">
-          Use <strong>Email:</strong> <span className="underline">admin@email.com</span> &{' '}
+      <div className="bg-yellow-100 mt-0 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded-lg shadow-lg mb-2 animate__animated animate__fadeInLeft animate__delay-1s">
+        <p className="text-sm font-medium ">
+          Use <strong>Email:</strong> <span className="underline">admin@example.com</span> &{' '}
           <strong>Password:</strong> <span className="underline">123</span> for admin login.
-        </p>
-        <p className="text-sm font-medium">
-          For employee, use <strong>Email:</strong> <span className="underline">employee@email.com</span> &{' '}
+
+          For employee, use <strong>Email:</strong> <span className="underline">employee1@example.com</span> &{' '}
           <strong>Password:</strong> <span className="underline">123</span>.
         </p>
       </div>

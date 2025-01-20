@@ -1,28 +1,44 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Login from './components/Auth/Login';
 import LandingPage from './components/LandingPage';
 import EmployeeDashboard from './components/Dashboard/EmployeeDashboard';
 import AdminDashboard from './components/Dashboard/AdminDashboard';
+import { AuthContext } from './context/AuthContextProvider';
 
 const App = () => {
   const [user, setUser] = useState(null);
   const [currentPage, setCurrentPage] = useState('landing'); // Tracks the current page
+  const authData = useContext(AuthContext);
 
   // Handle the login process
   const handleLogin = (email, password) => {
-    if (email === "admin@email.com" && password === "123") {
-      setUser('Admin');
-      setCurrentPage('adminDashboard');
-    } else if (email === "employee@email.com" && password === "123") {
-      setUser('Employee');
-      setCurrentPage('employeeDashboard');
-    } else {
-      alert('Invalid credentials');
+    if (authData) {
+      // Check if the user is an admin
+      const adminUser = authData.admin.find(
+        (e) => e.email === email && e.password === password
+      );
+      if (adminUser) {
+        setUser('Admin');
+        setCurrentPage('adminDashboard');
+        return;
+      }
+
+      // Check if the user is an employee
+      const employeeUser = authData.employees.find(
+        (e) => e.email === email && e.password === password
+      );
+      if (employeeUser) {
+        setUser('Employee');
+        setCurrentPage('employeeDashboard');
+        return;
+      }
     }
+    alert('Invalid credentials');
   };
 
   // Logout functionality
   const handleLogout = () => {
+    setUser(null);
     setCurrentPage('landing');
   };
 

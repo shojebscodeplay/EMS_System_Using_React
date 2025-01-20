@@ -116,21 +116,17 @@ const employees = [
   ];
   
   export const setLocalStorage = () => {
-    // Convert the employees array to a string before saving it
-    localStorage.setItem("employees", JSON.stringify(employees));
-    // Optionally, you can save admin data as well
-    localStorage.setItem("admin", JSON.stringify(admin));
+    // Save employees and admin data to localStorage
+    if (!localStorage.getItem('employees')) {
+      localStorage.setItem('employees', JSON.stringify(employees));
+    }
+    if (!localStorage.getItem('admin')) {
+      localStorage.setItem('admin', JSON.stringify(admin));
+    }
   };
   
   export const getLocalStorage = () => {
-    // Retrieve the data from localStorage and parse it back into an object
-    const employeesData = localStorage.getItem("employees");
-    const adminData = localStorage.getItem("admin");
-    
-    // Check if data exists and parse it
-    return {
-      employees: employeesData ? JSON.parse(employeesData) : [],
-      admin: adminData ? JSON.parse(adminData) : []
-    };
+    const employees = JSON.parse(localStorage.getItem('employees')) || [];
+    const admin = JSON.parse(localStorage.getItem('admin')) || [];
+    return { employees, admin };
   };
-  
