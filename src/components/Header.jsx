@@ -3,12 +3,15 @@ import React from 'react';
 const Header = ({ user, handleLogout }) => {
   return (
     <header className="bg-blue-600 text-white p-3 flex items-center justify-between w-screen">
-      {/* Greeting Section */}
-      <div className="flex items-center gap-4">
-        <h1 className="text-xl font-bold">
-          Hello <br />
-          <span role="img" aria-label="cool">😎</span> {user}
-        </h1>
+      {/* Greeting Section with Bubble Effect */}
+      <div className="flex items-center gap-4 relative">
+        <div className="bg-white text-blue-600 rounded-full p-4 shadow-lg relative z-10">
+          <h1 className="text-xl font-bold">
+            Hello <br />
+            <span role="img" aria-label="cool">😎</span> {user}
+          </h1>
+        </div>
+        <div className="absolute inset-0 rounded-full bg-white opacity-30 blur-md"></div>
       </div>
       {/* Logo Section */}
       <div>

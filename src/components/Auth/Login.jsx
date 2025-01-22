@@ -14,7 +14,7 @@ const Login = ({ handleLogin }) => {
 
   return (
     <div
-      className={`min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-green-500 to-green-700 transition-opacity duration-1000 ${
+      className={`min-h-screen flex flex-col items-center p-2 justify-center bg-gradient-to-r from-green-500 to-green-700 transition-opacity duration-1000 ${
         fadeIn ? 'opacity-100' : 'opacity-0'
       }`}
     >
@@ -27,7 +27,7 @@ const Login = ({ handleLogin }) => {
       </h1>
 
       {/* Side Note */}
-      <div className="bg-yellow-100 mt-0 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded-lg shadow-lg mb-2 animate__animated animate__fadeInLeft animate__delay-1s">
+      <div className="bg-yellow-100 mt-0 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded-lg shadow-lg mb-2 animate__animated animate__fadeInLeft animate__delay-1s p-5">
         <p className="text-sm font-medium ">
           Use <strong>Email:</strong> <span className="underline">admin@example.com</span> &{' '}
           <strong>Password:</strong> <span className="underline">123</span> for admin login.

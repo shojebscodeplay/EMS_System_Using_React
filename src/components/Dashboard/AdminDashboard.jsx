@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Header from '../Header';
 import Footer from '../Footer';
+import emailjs from 'emailjs-com';
 
-const AdminDashboard = ({handleLogout,user}) => {
-  // State to store form data
+const AdminDashboard = ({ handleLogout, user }) => {
   const [taskData, setTaskData] = useState({
     title: '',
     description: '',
@@ -12,7 +12,9 @@ const AdminDashboard = ({handleLogout,user}) => {
     category: ''
   });
 
-  // Handle input changes
+  // Create a reference for the form
+  const form = useRef();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setTaskData((prevState) => ({
@@ -21,24 +23,38 @@ const AdminDashboard = ({handleLogout,user}) => {
     }));
   };
 
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Use the form reference for emailjs
+    emailjs
+      .sendForm('service_h320k8m', 'template_1p2c4dy', form.current, 'uOD_pv73ji35rlead')
+      .then(
+        () => {
+          console.log('SUCCESS!');
+          alert('Task created and email sent successfully!');
+          setTaskData({
+            title: '',
+            description: '',
+            date: '',
+            assignedTo: '',
+            category: ''
+          });
+        },
+        (error) => {
+          console.error('FAILED...', error.text);
+          alert('Failed to send email. Please try again.');
+        }
+      );
+
     console.log('Task Data:', taskData);
-    setTaskData({
-      title: '',
-      description: '',
-      date: '',
-      assignedTo: '',
-      category: ''
-    });
   };
 
   return (
-    <div className="bg-gray-100 flex flex-col h-screen ">
-      <Header user={user} handleLogout={handleLogout}/>
+    <div className="bg-gray-100 flex flex-col h-screen">
+      <Header user={user} handleLogout={handleLogout} />
       <div className="w-screen bg-white p-1 rounded-lg shadow-lg mt-1 flex-grow overflow-y-auto">
-        <form onSubmit={handleSubmit}>
+        {/* Attach the form reference here */}
+        <form ref={form} onSubmit={handleSubmit}>
           {/* Task Title */}
           <div className="mb-2">
             <label htmlFor="title" className="block text-sm font-medium text-gray-700">Task Title</label>
@@ -85,12 +101,13 @@ const AdminDashboard = ({handleLogout,user}) => {
           <div className="mb-2">
             <label htmlFor="assignedTo" className="block text-sm font-medium text-gray-700">Assign To</label>
             <input
-              type="text"
+              type="email"
               id="assignedTo"
               name="assignedTo"
               value={taskData.assignedTo}
               onChange={handleChange}
               required
+              placeholder="employee@example.com"
               className="mt-1 block w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
@@ -111,8 +128,7 @@ const AdminDashboard = ({handleLogout,user}) => {
               <option value="Development">Development</option>
               <option value="Marketing">Marketing</option>
               <option value="Testing">Testing</option>
-              <option value="HR">Testing</option>
-
+              <option value="HR">HR</option>
             </select>
           </div>
 
