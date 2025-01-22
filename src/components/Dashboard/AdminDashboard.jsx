@@ -107,7 +107,7 @@ const AdminDashboard = ({ handleLogout, user }) => {
               value={taskData.assignedTo}
               onChange={handleChange}
               required
-              placeholder="employee@example.com"
+              placeholder="Enter a valid email"
               className="mt-1 block w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
