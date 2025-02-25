@@ -4,6 +4,7 @@ import LandingPage from './components/LandingPage';
 import EmployeeDashboard from './components/Dashboard/EmployeeDashboard';
 import AdminDashboard from './components/Dashboard/AdminDashboard';
 import { AuthContext } from './context/AuthContextProvider';
+import ChatApp from './components/ChatApp';
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -47,9 +48,16 @@ const App = () => {
     setCurrentPage('login');
   };
 
+  // Handle transition to ChatApp (Help Chat)
+  const handleHelpChat = () => {
+    setCurrentPage('chat');
+  };
+
   return (
     <>
-      {currentPage === 'landing' && <LandingPage onContinue={handleContinue} />}
+      {currentPage === 'landing' && (
+        <LandingPage onContinue={handleContinue} onHelpChat={handleHelpChat} />
+      )}
       {currentPage === 'login' && <Login handleLogin={handleLogin} />}
       {currentPage === 'adminDashboard' && (
         <AdminDashboard handleLogout={handleLogout} user={user} />
@@ -57,6 +65,7 @@ const App = () => {
       {currentPage === 'employeeDashboard' && (
         <EmployeeDashboard handleLogout={handleLogout} user={user} />
       )}
+      {currentPage === 'chat' && <ChatApp onBack={() => setCurrentPage('landing')} />}
     </>
   );
 };

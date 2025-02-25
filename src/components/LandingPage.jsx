@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LandingPage = ({ onContinue }) => {
+const LandingPage = ({ onContinue, onHelpChat }) => {
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-r from-purple-600 to-blue-500 text-white text-center p-4 sm:p-8">
       <img
@@ -17,12 +17,21 @@ const LandingPage = ({ onContinue }) => {
         Click below to get started!
       </p>
 
-      <button
-        onClick={onContinue}
-        className="px-5 py-2 sm:px-6 sm:py-3 text-lg bg-white text-blue-500 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl"
-      >
-        Continue to Login
-      </button>
+      <div className="flex gap-4">
+        <button
+          onClick={onContinue}
+          className="px-5 py-2 sm:px-6 sm:py-3 text-lg bg-white text-blue-500 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl"
+        >
+          Continue to Login
+        </button>
+
+        <button
+          onClick={onHelpChat}
+          className="px-5 py-2 sm:px-6 sm:py-3 text-lg bg-yellow-500 text-white rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl"
+        >
+          Help Chat
+        </button>
+      </div>
     </div>
   );
 };
