@@ -19,7 +19,7 @@ const ChatApp = ({ onBack }) => {
   const sendMessage = async (message) => {
     appendMessage("user", message);
     try {
-      const response = await fetch("http://localhost:5000/chat", {
+      const response = await fetch("https://llm-backend-pnae.onrender.com/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
