@@ -19,7 +19,7 @@ const ChatApp = ({ onBack }) => {
   const sendMessage = async (message) => {
     appendMessage("user", message);
     try {
-      const response = await fetch("https://chatbot-llm-xaxr.onrender.com/chat", {
+      const response = await fetch("https://chatbot-llm-8a1p.onrender.com/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
